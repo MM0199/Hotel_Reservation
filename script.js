@@ -29,7 +29,6 @@ if (localStorage.getItem('isLoginStatus') === 'true') {
     document.getElementById('profile-pic').alt = 'User Account';
     profileLink.href = 'userAccount.html'; // Link to the user account page
 } else {
-    document.getElementById('profile-pic').alt = 'Login';
     profileLink.href = 'login.html'; // Link to the login page
 }
 
@@ -74,19 +73,20 @@ function dateValidate(){
 }
 
 function paymentValidate() {
-    const cardNumber = document.querySelector('input[name="card_number"]').value;
-    const cardholderName = document.querySelector('input[name="cardholderName"]').value;
-    const expirationDate = document.querySelector('input[name="expirationDate"]').value;
-    const cvv = document.querySelector('input[name="cvv"]').value;
+    const cardNumber = document.getElementById('card_number').value;
+    const cardholderName = document.getElementById('cardholderName').value;
+    const expirationMonth = document.getElementById('expirationMonth').value;
+    const expirationYear = document.getElementById('expirationYear').value;
+    const cvv = document.getElementById('cvv').value;
 
     // Example: Basic input validation
-    if (!cardNumber || !cardholderName || !expirationDate || !cvv) {
+    if (!cardNumber || !cardholderName || !expirationMonth || !expirationYear || !cvv) {
         alert("Please fill in all required fields.");
-    } else if (!isValidCardNumber(cardNumber)) {
+    } if (!isValidCardNumber(cardNumber)) {
         alert("Please enter a valid card number.");
-    } else if (!isValidExpirationDate(expirationDate)) {
+    } if (!isValidExpirationDate(expirationDate)) {
         alert("Please enter a valid expiration date (MM/YY format).");
-    } else if (!isValidCVV(cvv)) {
+    }  if (!isValidCVV(cvv)) {
         alert("Please enter a valid CVV.");
     } else {
         // If all input is valid, redirect to the paymentForm.html
@@ -94,20 +94,7 @@ function paymentValidate() {
     }
 }
 
-function isValidCardNumber(cardNumber) {
-    // Implement card number validation logic here
-    return true; // Replace with your validation logic
-}
 
-function isValidExpirationDate(expirationDate) {
-    // Implement expiration date validation logic here
-    return true; // Replace with your validation logic
-}
-
-function isValidCVV(cvv) {
-    // Implement CVV validation logic here
-    return true; // Replace with your validation logic
-}
 
 function formatDate(date) {
     const year = date.getFullYear();
@@ -117,44 +104,37 @@ function formatDate(date) {
   }
 
 // Validate the account creation
-function accountValidate(){
+function guestInforValidate(){
     const firstName = document.getElementById("firstname").value;
     const lastName = document.getElementById("lastname").value;
-    const userName = document.getElementById("username").value;
     const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("repeatpassword").value;
-    const phoneNumber = document.getElementById("phonenumber").value;
+    const phoneNumber = document.getElementById("phone").value;
     const birthDate = document.getElementById("birthdate").value;
+    const address = document.getElementById("address").value;
+    const address2 = document.getElementById("address2").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zipcode = document.getElementById("zipcode").value;
+
+    const combinedAddress = !address2 ? address + ' ' + city + ', ' + state + ' ' + zipcode : address + ' ' + address2 + ' ' + city + ', ' + state + ' ' + zipcode;
 
     // Validate required fields
-    if (!firstName || !lastName  || !userName || !email || !password || !confirmPassword || !phoneNumber || !birthDate) {
+    if (!firstName || !lastName  || !email || !phoneNumber || !birthDate || !address || !city || !state || !zipcode) {
         alert("Please fill in all required fields.");
     }
 
     // Validate email format
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!email.match(emailPattern)) {
+    else if (!email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
         alert("Invalid email address.");
-
-    }
-
-    // Validate password strength
-    if (password.length < 8) {
-        alert("Password must be at least 8 characters.");
-    }
-
-    // Confirm matching passwords
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
     }
 
     // Validate phone number format (accepts xxx-xxx-xxxx or (xxx) xxx-xxxx)
-    if (phoneNumber.length != 10) {
+    else if (phoneNumber.length != 10) {
         alert("Invalid phone number format.");
+    } else {
+        window.location.href = "reservationDetail.html";
     }
-
-    window.location.href = "completeRegistration.html";    
+  
 }
 
 // Back to Home Page
