@@ -1,0 +1,420 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://www.themaritimehotel.com/content/themes/maritime/assets/images/temp/homepage.jpg');
+    background-size:100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+
+.topnav{
+    overflow: hidden;
+    background-color: #415da8;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.topnav .menu{
+    width: 160px;
+    padding: 20px;
+    font-size:50px;
+    cursor:pointer;
+}
+
+.topnav .hotel-name{
+    flex: 2;
+    text-align: center;
+}
+
+.hotel-name a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: fantasy;
+    font-style: italic;
+    font-size: xxx-large;
+    cursor: pointer;
+}
+
+.topnav .get-room{
+    height: 110px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: purple;
+}
+
+.get-room a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+}
+
+.get-room a:hover{
+    color: #415da8;
+}
+
+.hotel-name a:hover{
+    color: purple;
+}
+
+.menu:hover{
+    color: purple;
+}
+
+.profile-pic {
+
+    width: 110px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.lock-icon{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-image: url('lock.png');
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.user-icon{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-image: url('user.png');
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.login-container{
+    width: 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    justify-content: center;
+    margin: 200px;
+}
+
+#login-form{
+    text-align: center;
+}
+
+label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+label .required {
+    color: red;
+    margin-left: 5px;
+}
+
+input{
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button{
+    width: 90%;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background-image: linear-gradient(45deg, #ff00ff, #1400c4, #00a2ff);
+    background-size: 200% 200%;
+    transition: background-position 0.5s;
+}
+
+button:hover{
+    background-position: right center;
+}
+
+.registration-container{
+    width: auto;
+    height: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.registration-container header{
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
+
+.registration-container .registration-form{
+    margin-top: 5px;
+}
+
+.registration-form .input-box {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.registration-form h1{
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.registration-form p {
+    text-align: center;
+    margin: 30px;
+}
+
+.input-box label{
+    color: #333;
+}
+
+.input-box label .required {
+    color: red;
+    margin-left: 5px;
+}
+
+
+.registration-form :where(.input-box input, .select-box) {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+.input-box input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.registration-form .column {
+    display: flex;
+    column-gap: 10px;
+}
+.registration-form .gender-box {
+    margin-top: 5px;
+}
+.gender-box h3 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.gender-box h3 .required{
+    color: red;
+    margin-left: 5px;
+}
+
+.registration-form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+.registration-form .gender {
+    column-gap: 5px;
+}
+.gender input {
+    accent-color: rgb(130, 106, 251);
+}
+.registration-form :where(.gender input, .gender label) {
+    cursor: pointer;
+}
+.gender label {
+    color: #707070;
+}
+.address :where(input, .select-box) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #707070;
+    font-size: 1rem;
+}
+.registration-form button {
+    height: 45px;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: auto;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-image: linear-gradient(45deg, #ff00ff, #1400c4, #00a2ff);
+    background-size: 200% 200%;
+    transition: background-position 0.5s;
+}
+.registration-form button:hover {
+    background-position: right center;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: purple;
+    overflow-x: hidden;
+    transition: width 0.3s;
+    padding-top: 60px;
+  }
+  
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+  
+.sidenav a:hover {
+    color: #415da8;
+}
+  
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+  
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
+.room-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.room-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.room-card {
+    width: calc(33.33% - 20px);
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.room-card h2{
+    margin: 10px;
+    text-align: center;
+}
+
+.room-card p{
+    margin: 10px;
+}
+
+.room-card img{
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.room-card :hover{
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .room-card {
+        width: 100%;
+    }
+}
+
+.line {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    background-color: #f2f2f2; /* Set your desired background color here */
+}

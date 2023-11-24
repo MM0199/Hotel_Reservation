@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>User Accounts</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .available {
+            color: green;
+        }
+        .unavailable {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Accounts</h1>
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>User Type</th>
+            <th>Perms</th>
+        </tr>
+        <tr>
+            <td><a href="UserAccount.html">John Doe</a></td>
+            <td>
+                <select>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="guest">Guest</option>
+                </select>
+            </td>
+            <td>
+                <select>
+                    <option value="read">Read</option>
+                    <option value="write">Write</option>
+                    <option value="execute">Execute</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="UserAccount.html">Jane Smith</a></td>
+            <td>
+                <select>
+                    <option value="admin">Admin</option>
+                    <option value="Employee">User</option>
+                    <option value="guest">Guest</option>
+                </select>
+            </td>
+            <td>
+                <select>
+                    <option value="read">Read</option>
+                    <option value="write">Write</option>
+                </select>
+            </td>
+        </tr>
+        <!-- Add more user rows as needed -->
+    </table>
+</body>
+</html>

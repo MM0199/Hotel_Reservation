@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage user accounts</title>
+  </head>
+  <body>
+    <h1>User Account Management</h1>
+
+    <form>
+      <label for="role">Select a role: </label>
+      <select name="role" id="role">
+        <option value="front_desk">Front Desk</option>
+        <option value="manager">Manager</option>
+        <option value="administrator">Administrator</option></select
+      ><br /><br />
+
+      <label for="action">Select an action: </label>
+      <select name="action" id="action">
+        <option value="create">create</option>
+        <option value="modify">modify</option>
+        <option value="deactivate">deactivate</option></select
+      ><br /><br />
+
+      <!--Type in ID of account to create/modify/delete(Shows up once role is selected).-->
+      <label for="user_id">Select Account ID:</label><br />
+      <input type="text" id="user_id" name="user_id" /><br /><br />
+
+      <!--Shows up if edit is selected(data existing in database will appear in text boxes).-->
+      <label for="fname">First Name:</label><br />
+      <input type="text" id="fname" name="fname" /><br /><br />
+      <label for="lname">Last Name:</label><br />
+      <input type="text" id="lname" name="lname" /><br /><br />
+      <label for="phone">Phone:</label><br />
+      <input type="text" id="phone" name="phone" /><br /><br />
+      <label for="email">Email:</label><br />
+      <input type="text" id="email" name="email" /><br /><br />
+      <label for="address">Address:</label><br />
+      <input type="text" id="address" name="address" /><br /><br />
+
+      <!--Shows up if user is customer-->
+      <label for="loyalty_points">Loyalty Points:</label><br />
+      <input
+        type="text"
+        id="loyalty_points"
+        name="loyalty_points"
+      /><br /><br />
+
+      <!--Shows up if user is employee-->
+      <label for="salary">Salary:</label><br />
+      <input type="text" id="salary" name="salary" /><br /><br />
+      <label for="date_of_birth">Date of Birth:</label><br />
+      <input type="date" id="date_of_birth" name="date_of_birth" /><br /><br />
+      <label for="manager_id">Manager ID:</label><br />
+      <input type="text" id="manager_id" name="manager_id" /><br /><br />
+
+      <input type="submit" />
+    </form>
+    <!--<script src = "User_Account_Management.js"></script>-->
+  </body>
+</html>

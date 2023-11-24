@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home Page</title>
+        <link rel="stylesheet" href="styles.css" />
+      </head>
+      <body>
+       <!-- App bar -->
+       <div class="topnav">
+        <span class="menu" onclick="openNav()">&#9776;</span>
+        <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+        <div class="get-room">
+          <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+        </div>
+        <!-- Profile Icon and Link to Login Page -->
+        <div class="profile-icon">
+          <a href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
+        </div>
+      </div>
+        <!-- Side bar -->
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="home.html">Home</a>
+          <a href="roomList.html">Room</a>
+          <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
+          <a id="loginLink" href="login.html">Login</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+          <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+        </div>
+        <script src="script.js"></script>
+      </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuiteBookers - Reporting and Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<style>
+    /* Sections are set to none to not display initially */
+    section {
+        display: none;
+    }
+</style>
+
+<head>
+    <script>
+        // Function to show sections when navigation link is clicked
+        function toggleSection(sectionId) {
+            // Hide all sections
+            var sections = document.querySelectorAll("section");
+            sections.forEach(function(section) {
+                section.style.display = "none";
+            });
+
+            // Show the selected section
+            var selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = "block";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="home.html">Home</a>
+        <a href="roomList.html">Room</a>
+        <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
+        <a id="loginLink" href="login.html">Login</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+    </div>
+    <script src="script.js"></script>
+    <header>
+        <h1>SuiteBookers - Reporting and Analytics</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" onclick="toggleSection('reservationTrends');">Reservation Trends</a></li>
+            <li><a href="#" onclick="toggleSection('occupancyRates');">Occupancy Rates</a></li>
+            <li><a href="#" onclick="toggleSection('revenue');">Revenue</a></li>
+        </ul>
+    </nav>
+    
+    <section id="reservationTrends">
+        <h2>Reservation Trends</h2>
+        
+    </section>
+    
+    <section id="occupancyRates">
+        <h2>Occupancy Rates</h2>
+        
+    </section>
+    
+    <section id="revenue">
+        <h2>Revenue</h2>
+        
+    </section>
+    
+    <footer>
+        &copy; 2023 SuiteBookers
+    </footer>
+</body>
+</html>
