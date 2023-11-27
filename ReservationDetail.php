@@ -20,7 +20,7 @@ if (isset($_POST['data'])) {
     // For example, you might want to store the data in a database
     // Respond to the client (optional)
     echo 'Data received successfully.';
-	$conn = new mysqli("localhost", "root", "", $"hotel_database");
+	$conn = new mysqli("localhost", "root", "", "hotel_database");
 	// Check connection
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
@@ -39,7 +39,7 @@ if (isset($_POST['data'])) {
 		}
 		//$guestId->bind_result($user_id);
 		
-		$sqc = INSERT INTO CUSTOMER (customer_id)	VALUE($guestId);
+		$sqc = "INSERT INTO CUSTOMER (customer_id)	VALUE($guestId)";
 		$conn->query($sqc);
 	}
 	$isExist = false;
@@ -57,7 +57,7 @@ if (isset($_POST['data'])) {
                 $isExist = true;
             }
 	}
-	$sqe = "INSERT INTO RESERVATION_C (reserve_id, status)	VALUE($randomNumber, "Confirmed")";
+	$sqe = "INSERT INTO RESERVATION_C (reserve_id, status)	VALUE($randomNumber, 'Confirmed')";
 	$conn->query($sqe);
 	
 	$sqa = "INSERT INTO RESERVATION_A (customer_id, room_number, reserve_id)	VALUE($guestId, $roomNum, $randomNumber)";
@@ -67,9 +67,14 @@ if (isset($_POST['data'])) {
 	$conn->query($sqb);
 	
 	$t = date("Y-m-d H:i:s");
-	$sqp = "INSERT INTO PAYMENT (reserve_id, customer_id, amount, payment_date, method)	VALUE($randomNumber, $guestId, $amount, $t, "Credit Card")";
+	$sqp = "INSERT INTO PAYMENT (reserve_id, customer_id, amount, payment_date, method)	VALUE($randomNumber, $guestId, $amount, $t, 'Credit Card')";
 	
 	$conn->close();
+	echo
+		"<script>
+			alert('Payment Successful!');
+			window.location.href = 'completeReservation.html';
+		</script>";
 } else {
     // Handle the case where 'data' parameter is not set
     echo 'Error: Data parameter not set in the request.';

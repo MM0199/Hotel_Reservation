@@ -1,37 +1,14 @@
-// Save guest login status
-function saveLoginStatus() {
-    // Check if both username and password fields are not empty
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-  
-    if (username.trim() !== '' && password.trim() !== '') {
-      localStorage.setItem('isLoginStatus', 'true');
-      // Check if the user is logged in and redirect to the appropriate page
-      if (localStorage.getItem('isLoginStatus') === 'true') {
-        window.location.href = 'userAccount.html';
-      } else {
-        window.location.href = 'home.html';
-      }
-    } else {
-      alert('Please fill in both username and password.');
-    }
-  }
+// Check if the user is logged in and adjust the profile link
+const profileLink = document.getElementById('profileLink');
+
 // Check if the user is logged in and adjust the sidebar links
 if (localStorage.getItem("isLoginStatus") === "true") {
     document.getElementById("loginLink").style.display = "none";
     document.getElementById("logoutLink").style.display = "block";
-}
-
-// Check if the user is logged in and adjust the profile link
-const profileLink = document.getElementById('profileLink');
-
-if (localStorage.getItem('isLoginStatus') === 'true') {
-  profileLink.textContent = 'User Account';
-  profileLink.href = 'userAccount.html'; // Link to the user account page
+    profileLink.href = 'userAccount.html'; // Link to the user account page
 } else {
-  profileLink.textContent = 'Login';
-  profileLink.href = 'login.html'; // Link to the login page
-}
+    profileLink.href = 'login.html'; // Link to the login page
+  }
 
 // Function to log out
 function logout() {
