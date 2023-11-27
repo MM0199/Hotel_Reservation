@@ -8,29 +8,30 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <!-- App bar -->
-    <div class="topnav">
-      <span class="menu" onclick="openNav()">&#9776;</span>
-      <label class="hotel-name"><a href="home.html">The Hotel</a></label>
-      <div class="get-room">
-        <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+      <!-- App bar -->
+      <div class="topnav">
+          <span class="menu" onclick="openNav()">&#9776;</span>
+          <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+          <div class="get-room">
+              <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+          </div>
+          <!-- Profile Icon and Link to Login Page -->
+          <div class="profile-icon">
+              <a id="profileLink" href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
+          </div>
       </div>
-      <!-- Profile Icon and Link to Login Page -->
-      <div class="profile-pic">
-        <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+
+      <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="home.html">Home</a>
+          <a href="roomList.html">Room</a>
+          <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
+          <a id="loginLink" href="login.html">Login</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+          <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
       </div>
-    </div>
-    <!-- Side bar -->
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="home.html">Home</a>
-      <a href="roomList.html">Get a room</a>
-      <a id="loginLink" href="login.html">Login</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-      <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
-    </div>
 
     <!-- Registration container -->
     <div class="registration-container">
@@ -88,16 +89,17 @@
                 </select>
                     <!-- Add more years as needed -->
 
-            </div>
-            <div class="input-box">
-                <label>cvv (Max 3 characters):<span class="required">*</span></label>
-                <input id="cvv" type="text" name="cvv" maxlength="3" placeholder="cvv" required />
-            </div>
-            <button type="button" id="submit" onclick="paymentValidate()">Submit</button>
-        </form>
-    </div>
+              </div>
+              <div class="input-box">
+                  <label>cvv (Max 3 characters):<span class="required">*</span></label>
+                  <input id="cvv" type="text" name="cvv" maxlength="3" placeholder="cvv" required />
+              </div>
 
-    <script src="script.js"></script>
+              <!-- Modify the button to call a JavaScript function -->
+              <button type="button" id="submit" onclick="paymentValidate()" >Submit</button>
+          </form>
+      </div>
 
+      <script src="script.js"></script>
   </body>
 </html>
