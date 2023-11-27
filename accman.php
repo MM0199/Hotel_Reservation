@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Result</title>
 </head>
 <body>
   <?php
@@ -24,13 +24,9 @@
       $email = $_GET["email"];
       $DOB = $_GET["date_of_birth"];
       $address = $_GET["address"];
-        
-      if ($role == "front_desk" || $role == "administrator") {
-        $loyPoints = $_GET["loyalty_points"];
-      } else if ($role == "manager" || $role == "administrator") {
-        $MID = $_GET["manager_id"];
-        $salary = $_GET["salary"];
-      }
+      $loyPoints = $_GET["loyalty_points"];
+      $MID = $_GET["manager_id"];
+      $salary = $_GET["salary"];
     }
 
     $conn = new mysqli("localhost","root","","hotel_database");
@@ -88,7 +84,7 @@
         if($conn->query($sql)) {echo "EMPLOYEE insert successful ";}
       }
       
-      //Check if insert is succesfull.
+      //Check if insert is succesful.
 
     } else if ($action == "modify") {
       if(!empty($fname)) {
@@ -119,13 +115,6 @@
         if($conn->query($sql)) {echo "email update successful ";}
       }
 
-      if(!empty($DOB)) {
-        $sql = "UPDATE USER
-                SET date_of_birth = '$DOB'
-                WHERE user_id = '$ID'";
-        if($conn->query($sql)) {echo "date of birth update successful ";}
-      }
-
       if(!empty($address)) {
         $sql = "UPDATE USER
                 SET address = '$address'
@@ -133,25 +122,40 @@
         if($conn->query($sql)) {echo "address update successful ";}
       }
 
-      if(($role = "front_desk" || $role = "administrator") && !empty($loyPoints)) {
+      if(($role == "front_desk" || $role == "administrator") && !empty($loyPoints)) {
         $sql = "UPDATE CUSTOMER
                 SET loyal_point = '$loyPoints'
                 WHERE customer_id = '$ID'";
         if($conn->query($sql)) {echo "loyalty points update successful ";}
+      } else if($role == "manager" && !empty($loyPoints)) {
+        exit("Role must be Front Desk or Administrator");
       }
 
-      if(($role = "manager" || $role = "administrator") && !empty($MID)) {
+      if(($role == "manager" || $role == "administrator") && !empty($MID)) {
         $sql = "UPDATE EMPLOYEE
                 SET manager_id = '$MID'
                 WHERE employee_id = '$ID'";
         if($conn->query($sql)) {echo "manager id update successful ";}
+      } else if($role == "front_desk" && !empty($MID)) {
+        exit("Role must be Manager or Administrator");
       }
 
-      if(($role = "manager" || $role = "administrator") && !empty($salary)) {
+      if(($role == "manager" || $role == "administrator") && !empty($salary)) {
         $sql = "UPDATE EMPLOYEE
                 SET salary = '$salary'
                 WHERE employee_id = '$ID'";
         if($conn->query($sql)) {echo "salary update successful ";}
+      } else if($role == "front_desk" && !empty($salary)) {
+        exit("Role must be Manager or Administrator");
+      }
+
+      if(($role == "manager" || $role == "administrator") && !empty($DOB)) {
+        $sql = "UPDATE USER
+                SET date_of_birth = '$DOB'
+                WHERE user_id = '$ID'";
+        if($conn->query($sql)) {echo "date of birth update successful ";}
+      } else if($role == "front_desk" && !empty($DOB)) {
+        exit("Role must be Manager or Administrator");
       }
     }
   

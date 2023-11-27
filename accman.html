@@ -3,32 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage user accounts</title>
+    <title>Employee User Account Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      #EAM {
+        background-color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>User Account Management</h1>
+     <!-- App bar -->
+     <div class="topnav">
+      <span class="menu" onclick="openNav()">&#9776;</span>
+      <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+      <div class="get-room">
+        <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+      </div>
+      <!-- Profile Icon and Link to Login Page -->
+      <div class="profile-pic">
+        <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+      </div>
+    </div>
+    <!-- Side bar -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="home.html">Home</a>
+      <a href="roomList.html">Get a room</a>
+      <a id="loginLink" href="login.html">Login</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+    </div>
 
-    <form action = "accman.php" method = "get">
-      <label for="role">Select a role: </label>
-      <select name="role" id="role">
-        <option value="front_desk">Front Desk</option>
-        <option value="manager">Manager</option>
-        <option value="administrator">Administrator</option>
-      </select><br /><br />
+    <div id = "EAM">
+      <h1>Employee Account Management</h1><br/>
 
-      <label for="action">Select an action: </label>
-      <select name="action" id="action">
-        <option value="create">create</option>
-        <option value="modify">modify</option>
-        <option value="deactivate">deactivate</option></select
-      ><br /><br />
+      <form action = "accman.php" method = "get">
+        <label for="role">Select a role: </label>
+        <select name="role" id="role">
+          <option value="front_desk">Front Desk</option>
+          <option value="manager">Manager</option>
+          <option value="administrator">Administrator</option>
+        </select><br /><br />
 
-      <!--Type in ID of account to create/modify/delete(Shows up once role is selected).-->
-      <label for="user_id">Select Account ID:</label><br />
-      <input type="text" id="user_id" name="user_id" /><br /><br />
+        <label for="action">Select an action: </label>
+        <select name="action" id="action">
+          <option value="create">create</option>
+          <option value="modify">modify</option>
+          <option value="deactivate">deactivate</option></select
+        ><br /><br />
 
-      <!--Shows up if create or modify is selected(data existing in database will appear in text boxes).-->
-      <div>
+        <label for="user_id">Select Account ID:</label><br />
+        <input type="text" id="user_id" name="user_id" /><br /><br />
+
         <label for="fname">First Name:</label><br />
         <input type="text" id="fname" name="fname" /><br /><br />
         <label for="lname">Last Name:</label><br />
@@ -39,26 +69,25 @@
         <input type="text" id="email" name="email" /><br /><br />
         <label for="address">Address:</label><br />
         <input type="text" id="address" name="address" /><br /><br />
-      </div>
 
-      <!--Shows up if role is front desk-->
-      <label for="loyalty_points">Loyalty Points:</label><br />
-      <input
-        type="text"
-        id="loyalty_points"
-        name="loyalty_points"
-      /><br /><br />
+        <p><u>Front Desk/Administrator only</u></p><br/>
+        <label for="loyalty_points">Loyalty Points:</label><br />
+        <input
+          type="text"
+          id="loyalty_points"
+          name="loyalty_points"
+        /><br /><br />
 
-      <!--Shows up if role is manager or administrator-->
-      <label for="salary">Salary:</label><br />
-      <input type="text" id="salary" name="salary" /><br /><br />
-      <label for="date_of_birth">Date of Birth:</label><br />
-      <input type="date" id="date_of_birth" name="date_of_birth" /><br /><br />
-      <label for="manager_id">Manager ID:</label><br />
-      <input type="text" id="manager_id" name="manager_id" /><br /><br />
+        <p><u>Manager/Administrator only</u></p><br/>
+        <label for="manager_id">Manager ID:</label><br />
+        <input type="text" id="manager_id" name="manager_id" /><br /><br />
+        <label for="date_of_birth">Date of Birth:</label><br />
+        <input type="date" id="date_of_birth" name="date_of_birth" /><br /><br />
+        <label for="salary">Salary:</label><br />
+        <input type="text" id="salary" name="salary" /><br /><br />
 
-      <input type="submit" />
-    </form>
-    <!--<script src = "accman.js"></script>-->
+        <input type="submit" />
+      </form>
+    </div>
   </body>
 </html>
