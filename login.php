@@ -11,6 +11,10 @@ $sql = "SELECT user_id, first_name, last_name, email, pass
         FROM USER
         WHERE email = ?";
 
+$emp = "SELECT *
+        FROM EMPLOYEE
+        WHERE employee_id = $user_id";
+
 if ($stmt = $conn->prepare($sql)) {
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -21,8 +25,16 @@ if ($stmt = $conn->prepare($sql)) {
         // Verify the hashed password
         if (password_verify($pwd, $db_pass)) {
             // set the login status
+            $result = $conn->query($emp);
+            if ($result->num_rows === 0){
+               $isEmployee = false;
+            } else {
+                $isEmployee = true;
+            }
             echo    "<script>
                         localStorage.setItem('isLoginStatus', true);
+                        localStorage.setItem('guestId', $user_id);
+                        localStorage.setItem('isEmployee', $isEmployee);
                         window.location.href = 'home.html';
                     </script>";
         } else {

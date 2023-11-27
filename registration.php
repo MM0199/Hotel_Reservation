@@ -78,8 +78,8 @@
                 mysqli_stmt_execute($stmt);
                 mysqli_close($conn);
                 echo    "<script>
-                        localStorage.setItem('isLoginStatus', true);
-                        window.location.href = 'home.html';
+                        alert('You can now login using your new account.');
+                        window.location.href = 'login.html';
                         </script>";
                 exit(); // Ensure that no further code is executed
             } else {

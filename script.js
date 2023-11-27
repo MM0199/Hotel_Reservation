@@ -58,16 +58,73 @@ function closeNav() {
 }
 
 // Validate the date range
-function dateValidate(){
+function reservationValidate(){
     const checkInDateStr = document.getElementById("check-in-date").value;
     const checkoutDateStr = document.getElementById("check-out-date").value;
-    const currentDay = formatDate(new Date());
+    const roomNum = document.getElementById("room-num").value;
 
     if(currentDay >= checkInDateStr){
         alert("The closest check-in day is tomorrow.");
     } else if(checkoutDateStr <= checkInDateStr){
         alert("Invalid date range");
     } else {
+        localStorage.setItem('roomNum', roomNum);
+        localStorage.setItem('checkIn', checkInDateStr);
+        localStorage.setItem('checkOut', checkoutDateStr);
+        var checkInDate = new Date(localStorage.getItem('checkIn'));
+        var checkOutDate = new Date(localStorage.getItem('checkOut'));
+        var timeDifference = checkOutDate - checkInDate;
+        var totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        var Price;
+        switch(localStorage.getItem('type')){
+            case 'Single':
+                Price = 100.00;
+                break;
+    
+            case 'Double':
+                Price = 200.00;
+                break;
+    
+            case 'Suite':
+                Price = 300.00;
+                break;
+    
+            case 'Deluxe':
+                Price = 400.00;
+                break;
+    
+            case 'Twin':
+                Price = 150.00;
+                break;
+    
+            case 'King':
+                Price = 250.00;
+                break;
+    
+            case 'Queen':
+                Price = 220.00;
+                break;
+    
+            case 'Villa':
+                Price = 550.00;
+                break;
+    
+            case 'Penthouse':
+                Price = 650.00;
+                break;
+    
+            case 'Presidential Suite':
+                Price = 750.00;
+                break;
+    
+            default:
+                Price = 0;
+                break;
+    
+        }
+        var totalAmount = totalDays * Price;
+        localStorage.setItem('amount', totalAmount);
+        document.getElementById("totalAmount").textContent = amount;
         window.location.href = "paymentForm.html";
     }
 }
@@ -82,15 +139,36 @@ function paymentValidate() {
     // Example: Basic input validation
     if (!cardNumber || !cardholderName || !expirationMonth || !expirationYear || !cvv) {
         alert("Please fill in all required fields.");
-    } if (!isValidCardNumber(cardNumber)) {
-        alert("Please enter a valid card number.");
-    } if (!isValidExpirationDate(expirationDate)) {
-        alert("Please enter a valid expiration date (MM/YY format).");
-    }  if (!isValidCVV(cvv)) {
-        alert("Please enter a valid CVV.");
     } else {
-        // If all input is valid, redirect to the paymentForm.html
-        window.location.href = "completeReservation.html";
+        var reservationData = {
+            guestID: localStorage.getItem('guestId'),
+            firstName: localStorage.getItem('firstName'),
+            lastName: localStorage.getItem('lastName'),
+            roomNumber: localStorage.getItem('roomNum'),
+            checkInDate: localStorage.getItem('checkIn'),
+            checkOutDate: localStorage.getItem('checkOut'),
+            amount: localStorage.getItem('amount')
+        }
+        // Save reservation data to localStorage
+        localStorage.setItem('reservationData', JSON.stringify(reservationData));
+
+        // Now, you can send the data to the server using AJAX (assuming the server is PHP)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "payment.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Handle the response from the server
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Data sent successfully.");
+            }
+        };
+
+        // Convert reservationData to a query string
+        var params = "data=" + encodeURIComponent(JSON.stringify(reservationData));
+
+        // Send the data to the server
+        xhr.send(params);
     }
 }
 
@@ -132,6 +210,8 @@ function guestInforValidate(){
     else if (phoneNumber.length != 10) {
         alert("Invalid phone number format.");
     } else {
+        localStorage.setItem('firstName', firstName);
+        localStorage.setItem('lastName', lastName);
         window.location.href = "reservationDetail.html";
     }
   
