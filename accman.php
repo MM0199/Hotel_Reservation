@@ -158,7 +158,7 @@
         exit("Role must be Manager or Administrator");
       }
     }
-  
+    $conn -> close();
   ?>
 </body>
 </html>
