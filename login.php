@@ -3,8 +3,8 @@ $email = $_GET["email"];
 $pwd = $_GET["password"];
 
 $conn = new mysqli("localhost", "root", "", "hotel_database");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 $sql = "SELECT user_id, first_name, last_name, email, pass
@@ -20,56 +20,19 @@ if ($stmt = $conn->prepare($sql)) {
     if ($stmt->fetch()) {
         // Verify the hashed password
         if (password_verify($pwd, $db_pass)) {
-            // Close the result set of the first query before executing the second query
-            $stmt->close();
-
-            // Set the login status
-            $emp = "SELECT *
-                FROM EMPLOYEE
-                WHERE employee_id = ?";
-            $stmt_emp = $conn->prepare($emp);
-            $stmt_emp->bind_param("i", $user_id);
-            $stmt_emp->execute();
-            $stmt_emp->bind_result($eid, $mid, $salary);
-            $stmt_emp->fetch();
-
-            // Determine if the user is an employee
-            if($eid !== null){
-                echo "<script>
-                        localStorage.setItem('isEmployee', true);
-                    </script>";
-            } else {
-                echo "<script>
-                        localStorage.setItem('isEmployee', false);
-                    </script>";
-            }
-
-
+            // set the login status
             echo    "<script>
                         localStorage.setItem('isLoginStatus', true);
-                        localStorage.setItem('guestId', $user_id);
                         window.location.href = 'home.html';
                     </script>";
-
-            $stmt_emp->close();
         } else {
-            echo    "<script>
-                        alert('Invalid credentials');
-                        window.location.href = 'login.html';
-                    </script>";
-
-            // Close the result set of the first query
-            $stmt->close();
+            echo "Invalid credentials";
         }
     } else {
-        echo "<script>
-                alert('Invalid credentials');
-                window.location.href = 'login.html';
-            </script>";
-
-        // Close the result set of the first query
-        $stmt->close();
+        echo "Invalid credentials";
     }
+
+    $stmt->close();
 } else {
     die("Error in the prepared statement: " . $conn->error);
 }
