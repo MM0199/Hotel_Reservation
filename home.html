@@ -28,8 +28,17 @@
       <a href="#">About</a>
       <a href="#">Services</a>
       <a href="#">Contact</a>
+      <a id = "empOnly" href="employeeManagement.html" style = "visibility: hidden;">For Employees</a>
       <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
     </div>
     <script src="script.js"></script>
+    <script>
+      let isEmployee;
+      //localStorage.setItem('isEmployee', true);
+      let permission = localStorage.getItem('isEmployee');
+      if(permission == "true") {
+        document.getElementById("empOnly").style.visibility = "visible";
+      }
+    </script>
   </body>
 </html>

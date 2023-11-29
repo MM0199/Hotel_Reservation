@@ -35,13 +35,14 @@
       <a href="#">About</a>
       <a href="#">Services</a>
       <a href="#">Contact</a>
+      <a href="employeeManagement.html">For Employees</a>
       <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
     </div>
 
     <div id = "EAM">
       <h1>Employee Account Management</h1><br/>
 
-      <form action = "accman.php" method = "get">
+      <form action = "employeeManagement.php" method = "get">
         <label for="role">Select a role: </label>
         <select name="role" id="role">
           <option value="front_desk">Front Desk</option>
@@ -89,5 +90,6 @@
         <input type="submit" />
       </form>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
