@@ -30,21 +30,19 @@ if (!$conn) {
 	echo "no connection\n";
 }
 
-if ($guestId == null) {
+if ($guestId == 'null') {
 	$sqlG = "INSERT INTO USER (first_name, last_name)	VALUES(?, ?)";
 	$stmtG = mysqli_stmt_init($conn);
 	$prepareStmtG = mysqli_stmt_prepare($stmtG, $sqlG);
 
 	if ($prepareStmtG) {
-		echo "Data: " . var_export($firstName, true);
 		mysqli_stmt_bind_param($stmtG, "ss", $firstName, $lastName);
-		echo "SQL Query: $sqlG";
 		if (mysqli_stmt_execute($stmtG)) {
 			echo "User inserted successfully.\n";
 			// Get the ID of the inserted user
 			$uid = mysqli_insert_id($conn);
 
-			$sqc = "INSERT INTO CUSTOMER (customer_id) VALUES($uid, 0)";
+			$sqc = "INSERT INTO CUSTOMER (customer_id, loyal_point) VALUES($uid, 0)";
 			if ($conn->query($sqc)) {
 				echo "Customer inserted successfully.\n";
 			} else {
@@ -56,12 +54,6 @@ if ($guestId == null) {
 	} else {
 		die("User insertion statement preparation failed: " . mysqli_error($conn) . "\n");
 	}
-
-	// Get the ID of the inserted user
-	$uid = mysqli_insert_id($conn);
-	
-	$sqc = "INSERT INTO CUSTOMER (customer_id)	VALUES($uid, 0)";
-	$conn->query($sqc);
 } 
 
 $isExist = true;
