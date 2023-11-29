@@ -1,6 +1,5 @@
 // Check if the user is logged in and adjust the profile link
 const profileLink = document.getElementById('profileLink');
-
 // Check if the user is logged in and adjust the sidebar links
 if (localStorage.getItem("isLoginStatus") === "true") {
     document.getElementById("loginLink").style.display = "none";
@@ -17,14 +16,6 @@ function logout() {
     window.location.href = "home.html";
 }
 
-// Check if the user is logged in and adjust the correct links
-function getRoom() {
-    if(localStorage.getItem("isLoginStatus") === "true") {
-        window.location.href = "reservationDetail.html";
-    } else {
-        window.location.href = "reservationGuest.html";
-    }
-}
 
 // Sidebar controller
 function openNav() {
@@ -36,133 +27,42 @@ function closeNav() {
 }
 
 // Validate the date range
-function reservationValidate(){
+function reservationValidate() {
+    // Get current date
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    var currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based
+    var currentDay = currentDate.getDate().toString().padStart(2, '0');
+
+    var currentDayStr = `${currentMonth}-${currentDay}-${currentYear}`;
+
+    // Get selected check-in and check-out dates
     const checkInDateStr = document.getElementById("check-in-date").value;
     const checkoutDateStr = document.getElementById("check-out-date").value;
-    const roomNum = document.getElementById("room-num").value;
 
-    if(currentDay >= checkInDateStr){
+    if (currentDayStr === checkInDateStr) {
         alert("The closest check-in day is tomorrow.");
-    } else if(checkoutDateStr <= checkInDateStr){
+    } else if (checkoutDateStr < checkInDateStr) {
         alert("Invalid date range");
     } else {
-        localStorage.setItem('roomNum', roomNum);
         localStorage.setItem('checkIn', checkInDateStr);
         localStorage.setItem('checkOut', checkoutDateStr);
+
         var checkInDate = new Date(localStorage.getItem('checkIn'));
         var checkOutDate = new Date(localStorage.getItem('checkOut'));
+
         var timeDifference = checkOutDate - checkInDate;
-        var totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-        var Price;
-        switch(localStorage.getItem('type')){
-            case 'Single':
-                Price = 100.00;
-                break;
-    
-            case 'Double':
-                Price = 200.00;
-                break;
-    
-            case 'Suite':
-                Price = 300.00;
-                break;
-    
-            case 'Deluxe':
-                Price = 400.00;
-                break;
-    
-            case 'Villa':
-                Price = 550.00;
-                break;
-    
-            case 'Penthouse':
-                Price = 650.00;
-                break;
-    
-            case 'Presidential Suite':
-                Price = 750.00;
-                break;
-    
-            default:
-                Price = 0;
-                break;
-    
-        }
-        var totalAmount = totalDays * Price;
+        var totalDays = Math.max(Math.ceil(timeDifference / (1000 * 60 * 60 * 24)), 1);
+        var Price = localStorage.getItem('rate');
+        var numericPart = Price.match(/\d+(\.\d+)?/);
+        var numericValue = parseFloat(numericPart[0]);
+        var totalAmount = totalDays * numericValue;
+
         localStorage.setItem('amount', totalAmount);
-        document.getElementById("totalAmount").textContent = amount;
         window.location.href = "paymentForm.html";
     }
 }
 
-function paymentValidate() {
-
-    document.getElementById('card_number').addEventListener('input', function (e) {
-        const target = e.target;
-        const input = target.value.replace(/\D/g, '').substring(0, 16); // Allow only digits and limit length to 16
-
-        // Add space every 4 characters for better readability
-        target.value = input.replace(/(\d{4})(?=\d)/g, '$1 ');
-    });
-
-    const cardNumber = document.getElementById("card_number").value;
-    const cardholderName = document.getElementById("cardholderName").value;
-    const expirationDateMonth = document.getElementById("expirationDateMonth").value;
-    const expirationDateYear = document.getElementById("expirationDateYear").value;
-    const cvv = document.getElementById("cvv").value;
-
-    // Example: Basic input validation
-    if (!cardNumber || !cardholderName || !expirationDateMonth || !expirationDateYear || !cvv) {
-        alert("Please fill in all required fields.");
-    }
-
-    else if (cardNumber.length != 16) {
-        alert("Please enter a valid card number.");
-        return;
-    }
-
-    else if (expirationDateMonth === '' || expirationDateYear === '') {
-        alert("Please enter a valid expiration date (MM/YY format).");
-        return;
-    }
-
-    else if (cvv.length != 3) {
-        alert("Please enter a valid CVV.");
-        return;
-    }
-
-    else {
-        var reservationData = {
-            guestID: localStorage.getItem('guestId'),
-            firstName: localStorage.getItem('firstName'),
-            lastName: localStorage.getItem('lastName'),
-            roomNumber: localStorage.getItem('roomNum'),
-            checkInDate: localStorage.getItem('checkIn'),
-            checkOutDate: localStorage.getItem('checkOut'),
-            amount: localStorage.getItem('amount')
-        }
-        // Save reservation data to localStorage
-        localStorage.setItem('reservationData', JSON.stringify(reservationData));
-
-        // Now, you can send the data to the server using AJAX (assuming the server is PHP)
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "payment.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        // Handle the response from the server
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("Data sent successfully.");
-            }
-        };
-
-        // Convert reservationData to a query string
-        var params = "data=" + encodeURIComponent(JSON.stringify(reservationData));
-
-        // Send the data to the server
-        xhr.send(params);
-    }
-}
 
 function formatDate(date) {
     const year = date.getFullYear();
@@ -171,19 +71,20 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
   }
 
-// Validate the account creation
-function accountValidate(){
-    const firstName = document.getElementById("firstname").value;
-    const lastName = document.getElementById("lastname").value;
-    const userName = document.getElementById("username").value;
+// Validate the user infor input
+function guestInforValidate(){
+    const firstName = document.getElementById("first").value;
+    const lastName = document.getElementById("last").value;
     const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("repeatpassword").value;
-    const phoneNumber = document.getElementById("phonenumber").value;
+    const phoneNumber = document.getElementById("phonenum").value;
     const birthDate = document.getElementById("birthdate").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zip = document.getElementById("zipcode").value;
 
     // Validate required fields
-    if (!firstName || !lastName  || !userName || !email || !password || !confirmPassword || !phoneNumber || !birthDate) {
+    if (!firstName || !lastName || !email || !phoneNumber || !birthDate || !address || !city || !state || !zip) {
         alert("Please fill in all required fields.");
     }
 
@@ -194,24 +95,13 @@ function accountValidate(){
 
     }
 
-    // Validate password strength
-    if (password.length < 8) {
-        alert("Password must be at least 8 characters.");
-    }
-
-    // Confirm matching passwords
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-    }
-
     // Validate phone number format (accepts xxx-xxx-xxxx or (xxx) xxx-xxxx)
     if (phoneNumber.length != 10) {
         alert("Invalid phone number format.");
-    } else {
-        window.location.href = "reservationDetail.html";
     }
-
-    window.location.href = "completeRegistration.html";    
+        localStorage.setItem('firstName', firstName);
+        localStorage.setItem('lastName', lastName);
+        window.location.href = "reservationDetail.html";
 }
 
 // Back to Home Page
@@ -219,4 +109,14 @@ function backHome(){
     window.location.href = "home.html";
 }
 
+function getInfor(room) {
+    localStorage.setItem('roomNum', room.id);
+    localStorage.setItem('type', document.getElementById(room.id + '_type').textContent);
+    localStorage.setItem('rate', document.getElementById(room.id + '_rate').textContent);
 
+    if(localStorage.getItem("isLoginStatus") === "true") {
+        window.location.href = "reservationDetail.html";
+    } else {
+        window.location.href = "reservationGuest.html";
+    }
+}  

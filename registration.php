@@ -71,17 +71,26 @@
                     </script>";
         } else {                 
             $sql = "INSERT INTO USER (first_name, last_name, phone, email, pass, date_of_birth, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sqlCus = "INSERT INTO CUSTOMER (customer_id, loyal_point) VALUES(?, ?)";
             $stmt = mysqli_stmt_init($conn);
             $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
             if($prepareStmt){
                 mysqli_stmt_bind_param($stmt, "sssssss", $firstName, $lastName, $phoneNumber, $email, $passwordHash, $birthDate, $combinedAddress);
+                mysqli_stmt_execute($stmt);
+            } else {
+                die("Something went wrong");
+            } 
+            $prepareStmtCus = mysqli_stmt_prepare($stmt, $sqlCus);
+            // Get the ID of the inserted user
+		    $uid = mysqli_insert_id($conn);
+            if($prepareStmt){
+                mysqli_stmt_bind_param($stmt, "ss", $uid, 0);
                 mysqli_stmt_execute($stmt);
                 mysqli_close($conn);
                 echo    "<script>
                         alert('You can now login using your new account.');
                         window.location.href = 'login.html';
                         </script>";
-                exit(); // Ensure that no further code is executed
             } else {
                 die("Something went wrong");
             } 

@@ -350,6 +350,7 @@ button:hover{
 
 .room-container {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 100%;
@@ -359,13 +360,13 @@ button:hover{
 .room-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     width: 100%;
     margin-bottom: 20px;
 }
 
 .room-card {
-    width: calc(33.33% - 20px);
+    width: 300px;
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -386,12 +387,6 @@ button:hover{
     margin: 10px;
 }
 
-.room-card img{
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-}
 
 .room-card :hover{
     cursor: pointer;

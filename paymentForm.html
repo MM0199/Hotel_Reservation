@@ -9,97 +9,117 @@
   </head>
   <body>
       <!-- App bar -->
-      <div class="topnav">
-          <span class="menu" onclick="openNav()">&#9776;</span>
-          <label class="hotel-name"><a href="home.html">The Hotel</a></label>
-          <div class="get-room">
-            <a href="roomList.html">GET A ROOM</a>
-          </div>
-          <!-- Profile Icon and Link to Login Page -->
-          <div class="profile-icon">
-              <a id="profileLink" href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
-          </div>
+    <div class="topnav">
+        <span class="menu" onclick="openNav()">&#9776;</span>
+        <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+        <div class="get-room">
+          <a href="roomList.php">GET A ROOM</a>
+        </div>
+        <!-- Profile Icon and Link to Login Page -->
+        <div class="profile-pic">
+          <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+        </div>
       </div>
-
+      <!-- Side bar -->
       <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="home.html">Home</a>
-          <a href="roomList.html">Room</a>
-          <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
-          <a id="loginLink" href="login.html">Login</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
-          <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="home.html">Home</a>
+        <a href="roomList.php">Get a room</a>
+        <a id="loginLink" href="login.html">Login</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
       </div>
 
-    <!-- Registration container -->
-    <div class="registration-container">
-        <header>Payment Information</header>
-        <br>
-        <form class="payment-information">
-          <div class="input-box">
-            <p>Amount: $<span id="totalAmount">0.00 </span></p> <br>
-          </div>
+        <!-- Registration container -->
+        <div class="registration-container">
+            <header>Payment Information</header>
+            <br>
+            <form class="payment-information" action="ReservationDetail.php" method="post">
             <div class="input-box">
-                <label>Card Number:<span class="required">*</span></label>
-                <input id='card_number' type="text" name="cardholderName" pattern="[0-9]{16}" placeholder="xxxx-xxxx-xxxx-xxxx" required />
+                <p>Amount: $<span id="totalAmount"> </span></p> <br>
             </div>
-            <div class="input-box">
-                <label>Name on Card<span class="required">*</span></label>
-                <input id="cardholderName" type="text" name="cardholderName" placeholder="Name" required />
-            </div>
-            <div class="input-box">
-                <label>Expiration Date (MM/YY):<span class="required">*</span></label>
-                <select id="expirationMonth" name="expirationDateMonth" required>
-                    <option value="">Month</option>
-                    <option value="01">01 - January</option>
-                    <option value="02">02 - February</option>
-                    <option value="03">03 - March</option>
-                    <option value="04">04 - April</option>
-                    <option value="05">05 - May</option>
-                    <option value="06">06 - June</option>
-                    <option value="07">07 - July</option>
-                    <option value="08">08 - August</option>
-                    <option value="09">09 - September</option>
-                    <option value="10">10 - October</option>
-                    <option value="11">11 - November</option>
-                    <option value="12">12 - December</option>
-                    <!-- Add more months as needed -->
-                </select>
-                <select id="expirationYear" name="expirationDateYear" required>
-                    <option value="">Year</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                    <option value="2030">2030</option>
-                    <option value="2031">2031</option>
-                    <option value="2032">2032</option>
-                    <option value="2033">2033</option>
-                    <option value="2034">2034</option>
-                    <option value="2035">2035</option>
-                    <option value="2036">2036</option>
-                    <option value="2037">2037</option>
-                    <option value="2038">2038</option>
-                    <option value="2039">2039</option>
-                </select>
-                    <!-- Add more years as needed -->
+                <div class="input-box">
+                    <label>Card Number:<span class="required">*</span></label>
+                    <input id='card_number' type="text" name="cardNumber" pattern="[0-9]{16}" placeholder="xxxx-xxxx-xxxx-xxxx" maxlength="16" />
+                </div>
+                <div class="input-box">
+                    <label>Name on Card<span class="required">*</span></label>
+                    <input id="cardholderName" type="text" name="cardholderName" placeholder="Name" required />
+                </div>
+                <div class="input-box">
+                    <label>Expiration Date (MM/YY):<span class="required">*</span></label>
+                    <select id="expirationMonth" name="expirationDateMonth" required>
+                        <option value="">Month</option>
+                        <option value="01">01 - January</option>
+                        <option value="02">02 - February</option>
+                        <option value="03">03 - March</option>
+                        <option value="04">04 - April</option>
+                        <option value="05">05 - May</option>
+                        <option value="06">06 - June</option>
+                        <option value="07">07 - July</option>
+                        <option value="08">08 - August</option>
+                        <option value="09">09 - September</option>
+                        <option value="10">10 - October</option>
+                        <option value="11">11 - November</option>
+                        <option value="12">12 - December</option>
+                    </select>
+                    <select id="expirationYear" name="expirationDateYear" required>
+                        <option value="">Year</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                        <option value="2036">2036</option>
+                        <option value="2037">2037</option>
+                        <option value="2038">2038</option>
+                        <option value="2039">2039</option>
+                    </select>
+                        <!-- Add more years as needed -->
 
-              </div>
-              <div class="input-box">
-                  <label>cvv (Max 3 characters):<span class="required">*</span></label>
-                  <input id="cvv" type="text" name="cvv" maxlength="3" placeholder="cvv" required />
-              </div>
+                </div>
+                <div class="input-box">
+                    <label>cvv (Max 3 characters):<span class="required">*</span></label>
+                    <input id="cvv" type="text" name="cvv" maxlength="3" placeholder="cvv" required />
+                </div>
 
-              <!-- Modify the button to call a JavaScript function -->
-              <button type="button" id="submit" onclick="paymentValidate()" >Submit</button>
-          </form>
-      </div>
+                <!-- Modify the button to call a JavaScript function -->
+                <button type="submit">Submit</button>
 
+                <input type="hidden" id="guestId" name="guestId" />
+                <input type="hidden" id="firstName" name="firstName" />
+                <input type="hidden" id="lastName" name="lastName" />
+                <input type="hidden" id="roomNum" name="roomNum" />
+                <input type="hidden" id="checkIn" name="checkIn" />
+                <input type="hidden" id="checkOut" name="checkOut" />
+                <input type="hidden" id="amount" name="amount" />
+            </form>
+        </div>
+
+        <script>
+            if(localStorage.getItem('isLoginStatus') == 'false'){
+                localStorage.setItem('guestId', null);
+            }   
+
+            document.getElementById('totalAmount').textContent = localStorage.getItem('amount');
+            document.getElementById('guestId').value = localStorage.getItem('guestId');
+            document.getElementById('firstName').value = localStorage.getItem('firstName');
+            document.getElementById('lastName').value = localStorage.getItem('lastName');
+            document.getElementById('roomNum').value = localStorage.getItem('roomNum');
+            document.getElementById('checkIn').value = localStorage.getItem('checkIn');
+            document.getElementById('checkOut').value = localStorage.getItem('checkOut');
+            document.getElementById('amount').value = localStorage.getItem('amount');
+        </script>
       <script src="script.js"></script>
   </body>
 </html>
