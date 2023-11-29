@@ -1,19 +1,14 @@
+// Check if the user is logged in and adjust the profile link
+const profileLink = document.getElementById('profileLink');
+
 // Check if the user is logged in and adjust the sidebar links
 if (localStorage.getItem("isLoginStatus") === "true") {
     document.getElementById("loginLink").style.display = "none";
     document.getElementById("logoutLink").style.display = "block";
-}
-
-// Check if the user is logged in and adjust the profile link
-const profileLink = document.getElementById('profileLink');
-
-if (localStorage.getItem('isLoginStatus') === 'true') {
-  profileLink.textContent = 'User Account';
-  profileLink.href = 'userAccount.html'; // Link to the user account page
+    profileLink.href = 'userAccount.html'; // Link to the user account page
 } else {
-  profileLink.textContent = 'Login';
-  profileLink.href = 'login.html'; // Link to the login page
-}
+    profileLink.href = 'login.html'; // Link to the login page
+  }
 
 // Function to log out
 function logout() {
@@ -41,16 +36,17 @@ function closeNav() {
 }
 
 // Validate the date range
-function dateValidate(){
+function reservationValidate(){
     const checkInDateStr = document.getElementById("check-in-date").value;
     const checkoutDateStr = document.getElementById("check-out-date").value;
-    const currentDay = formatDate(new Date());
+    const roomNum = document.getElementById("room-num").value;
 
     if(currentDay >= checkInDateStr){
         alert("The closest check-in day is tomorrow.");
     } else if(checkoutDateStr <= checkInDateStr){
         alert("Invalid date range");
     } else {
+        localStorage.setItem('roomNum', roomNum);
         localStorage.setItem('checkIn', checkInDateStr);
         localStorage.setItem('checkOut', checkoutDateStr);
         var checkInDate = new Date(localStorage.getItem('checkIn'));
@@ -100,39 +96,72 @@ function dateValidate(){
 }
 
 function paymentValidate() {
-    const cardNumber = document.getElementById('input[name="card_number"]').value;
-    const cardholderName = document.getElementById('input[name="cardholderName"]').value;
-    const expirationDate = document.getElementById('input[name="expirationDate"]').value;
-    const cvv = document.getElementById('input[name="cvv"]').value;
+
+    document.getElementById('card_number').addEventListener('input', function (e) {
+        const target = e.target;
+        const input = target.value.replace(/\D/g, '').substring(0, 16); // Allow only digits and limit length to 16
+
+        // Add space every 4 characters for better readability
+        target.value = input.replace(/(\d{4})(?=\d)/g, '$1 ');
+    });
+
+    const cardNumber = document.getElementById("card_number").value;
+    const cardholderName = document.getElementById("cardholderName").value;
+    const expirationDateMonth = document.getElementById("expirationDateMonth").value;
+    const expirationDateYear = document.getElementById("expirationDateYear").value;
+    const cvv = document.getElementById("cvv").value;
 
     // Example: Basic input validation
-    if (!cardNumber || !cardholderName || !expirationDate || !cvv) {
+    if (!cardNumber || !cardholderName || !expirationDateMonth || !expirationDateYear || !cvv) {
         alert("Please fill in all required fields.");
-    } else if (!isValidCardNumber(cardNumber)) {
-        alert("Please enter a valid card number.");
-    } else if (!isValidExpirationDate(expirationDate)) {
-        alert("Please enter a valid expiration date (MM/YY format).");
-    } else if (!isValidCVV(cvv)) {
-        alert("Please enter a valid CVV.");
-    } else {
-        // If all input is valid, redirect to the paymentForm.html
-        window.location.href = "completeReservation.html";
     }
-}
 
-function isValidCardNumber(cardNumber) {
-    // Implement card number validation logic here
-    return true; // Replace with your validation logic
-}
+    else if (cardNumber.length != 16) {
+        alert("Please enter a valid card number.");
+        return;
+    }
 
-function isValidExpirationDate(expirationDate) {
-    // Implement expiration date validation logic here
-    return true; // Replace with your validation logic
-}
+    else if (expirationDateMonth === '' || expirationDateYear === '') {
+        alert("Please enter a valid expiration date (MM/YY format).");
+        return;
+    }
 
-function isValidCVV(cvv) {
-    // Implement CVV validation logic here
-    return true; // Replace with your validation logic
+    else if (cvv.length != 3) {
+        alert("Please enter a valid CVV.");
+        return;
+    }
+
+    else {
+        var reservationData = {
+            guestID: localStorage.getItem('guestId'),
+            firstName: localStorage.getItem('firstName'),
+            lastName: localStorage.getItem('lastName'),
+            roomNumber: localStorage.getItem('roomNum'),
+            checkInDate: localStorage.getItem('checkIn'),
+            checkOutDate: localStorage.getItem('checkOut'),
+            amount: localStorage.getItem('amount')
+        }
+        // Save reservation data to localStorage
+        localStorage.setItem('reservationData', JSON.stringify(reservationData));
+
+        // Now, you can send the data to the server using AJAX (assuming the server is PHP)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "payment.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Handle the response from the server
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Data sent successfully.");
+            }
+        };
+
+        // Convert reservationData to a query string
+        var params = "data=" + encodeURIComponent(JSON.stringify(reservationData));
+
+        // Send the data to the server
+        xhr.send(params);
+    }
 }
 
 function formatDate(date) {
@@ -178,6 +207,8 @@ function accountValidate(){
     // Validate phone number format (accepts xxx-xxx-xxxx or (xxx) xxx-xxxx)
     if (phoneNumber.length != 10) {
         alert("Invalid phone number format.");
+    } else {
+        window.location.href = "reservationDetail.html";
     }
 
     window.location.href = "completeRegistration.html";    

@@ -10,27 +10,26 @@
   <body>
     <!-- App bar -->
     <div class="topnav">
-        <span class="menu" onclick="openNav()">&#9776;</span>
-        <label class="hotel-name"><a href="home.html">The Hotel</a></label>
-        <div class="get-room">
-          <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
-        </div>
-        <!-- Profile Icon and Link to Login Page -->
-        <div class="profile-icon">
-          <a href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
-        </div>
+      <span class="menu" onclick="openNav()">&#9776;</span>
+      <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+      <div class="get-room">
+        <a href="roomList.html">GET A ROOM</a>
       </div>
-
+      <!-- Profile Icon and Link to Login Page -->
+      <div class="profile-pic">
+        <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+      </div>
+    </div>
+    <!-- Side bar -->
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="home.html">Home</a>
-        <a href="roomList.php">Room</a>
-        <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
-        <a id="loginLink" href="login.html">Login</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="home.html">Home</a>
+      <a href="roomList.html">Get a room</a>
+      <a id="loginLink" href="login.html">Login</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
     </div>
     <!-- Registration container -->
     <div class="registration-container">
@@ -45,17 +44,6 @@
                 <label>Number of children<span class="required">*</span></label>
                 <input type="number" name="childrens" placeholder="Number of childrens" required />
             </div>
-            <label>Room Type<span class="required">*</span></label>
-            <div class="column">
-                <div class="select-box">
-                    <select id="room-type">
-                        <option value="single">Single ($100.00/night)</option>
-                        <option value="double">Double ($200.00/night)</option>
-                        <option value="suite">Suite ($350.00/night)</option>
-                        <option value="deluxe">Deluxe ($500.00/night)</option>
-                    </select>
-                </div>
-            </div>
             <div class="column">
                 <div class="input-box">
                     <label>Check-in date<span class="required">*</span></label>
@@ -67,7 +55,7 @@
                 </div>
             </div>
 
-            <button type ="reset" id="submit" onclick="dateValidate()">Submit</button>
+            <button type ="reset" id="submit" onclick="reservationValidate()">Submit</button>
         </form>
     </div>
 

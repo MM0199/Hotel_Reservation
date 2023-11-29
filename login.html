@@ -8,29 +8,28 @@
     </head>
     <body>
         <!-- App bar -->
-        <div class="topnav">
-            <span class="menu" onclick="openNav()">&#9776;</span>
-            <label class="hotel-name"><a href="home.html">The Hotel</a></label>
-            <div class="get-room">
-              <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
-            </div>
-            <!-- Profile Icon and Link to Login Page -->
-            <div class="profile-pic">
-                <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="" /></a>
-            </div>
-          </div>
-
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="home.html">Home</a>
-            <a href="roomList.php">Room</a>
-            <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
-            <a id="loginLink" href="login.html">Login</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-            <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+    <div class="topnav">
+        <span class="menu" onclick="openNav()">&#9776;</span>
+        <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+        <div class="get-room">
+          <a href="roomList.html">GET A ROOM</a>
         </div>
+        <!-- Profile Icon and Link to Login Page -->
+        <div class="profile-pic">
+          <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+        </div>
+      </div>
+      <!-- Side bar -->
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="home.html">Home</a>
+        <a href="roomList.html">Get a room</a>
+        <a id="loginLink" href="login.html">Login</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+      </div>
         
         <!-- Login Container -->
             <div class="login-container">
@@ -40,7 +39,7 @@
                     <input type="text" id="email" name="email" required placeholder="Enter your email"><br>
                 
                     <label for="password"><i class="lock-icon"></i>Password</label>
-                    <input type="text" id="password" name="password" required placeholder="Enter your password"><br>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password"><br>
                 
                     <button type="submit" id="submitButton">Login</button>
                 
@@ -54,3 +53,4 @@
 
     </body>
 </html
+
