@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home Page</title>
+        <link rel="stylesheet" href="styles.css" />
+      </head>
+      <body>
+       <!-- App bar -->
+       <div class="topnav">
+        <span class="menu" onclick="openNav()">&#9776;</span>
+        <label class="hotel-name"><a href="home.html">The Hotel</a></label>
+        <div class="get-room">
+          <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+        </div>
+        <!-- Profile Icon and Link to Login Page -->
+        <div class="profile-icon">
+          <a href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
+        </div>
+      </div>
+        <!-- Side bar -->
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="home.html">Home</a>
+          <a href="roomList.php">Room</a>
+          <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
+          <a id="loginLink" href="login.html">Login</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+          <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
+        </div>
+        <script src="script.js"></script>
+      </body>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuiteBookers - Reporting and Analytics</title>
@@ -86,62 +118,11 @@
             if (selectedSection) {
                 selectedSection.style.display = "block";
             }
-
-            if (sectionId === 'occupancyRates' || sectionId === 'revenue') {
-                fetch('charts.php')
-                .then(response => response.json())
-                .then(data => {
-                    if (sectionId === 'occupancyRates') {
-                        renderChart('occupancyChart', data.occupancy, 'line');
-                    } else if (sectionId === 'revenue') {
-                        renderChart('revenueChart', data.revenue, 'bar');
-                    }
-                });
-            }
-        }
-
-            function renderChart(canvasId, data, chartType) {
-            const ctx = document.getElementById(canvasId).getContext('2d');
-            new Chart(ctx, {
-                type: chartType,
-                data: {
-                    labels: data.map(item => item.date),
-                    datasets: [{
-                        label: canvasId === 'occupancyChart' ? 'Rooms Occupied' : 'Total Revenue',
-                        data: data.map(item => canvasId === 'occupancyChart' ? item.room_count : item.total_amount),
-                        
-                    }]
-                }
-            });
         }
     </script>
 </head>
 
 <body>
-    <!-- App bar -->
-    <div class="topnav">
-        <span class="menu" onclick="openNav()">&#9776;</span>
-        <label class="hotel-name"><a href="home.html">The Hotel</a></label>
-        <div class="get-room">
-            <a href="roomList.html">GET A ROOM</a>
-        </div>
-        <!-- Profile Icon and Link to Login Page -->
-        <div class="profile-pic">
-        <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
-        </div>
-    </div>
-    <!-- Side bar -->
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="home.html">Home</a>
-        <a href="roomList.html">Get a room</a>
-        <a id="loginLink" href="login.html">Login</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
-    </div>
-
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="home.html">Home</a>
@@ -160,27 +141,25 @@
     
     <nav>
         <ul>
-            <!--
             <li><a href="#" onclick="toggleSection('reservationTrends');">Reservation Trends</a></li>
-            -->
             <li><a href="#" onclick="toggleSection('occupancyRates');">Occupancy Rates</a></li>
             <li><a href="#" onclick="toggleSection('revenue');">Revenue</a></li>
         </ul>
     </nav>
-    <!--
+    
     <section id="reservationTrends">
         <h2>Reservation Trends</h2>
         
     </section>
-    -->
+    
     <section id="occupancyRates">
         <h2>Occupancy Rates</h2>
-        <canvas id="occupancyChart"></canvas>
+        
     </section>
     
     <section id="revenue">
         <h2>Revenue</h2>
-        <canvas id="revenueChart"></canvas>
+        
     </section>
     
     <footer>

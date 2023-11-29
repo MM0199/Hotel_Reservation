@@ -107,16 +107,7 @@ h1{
     display: inline-block;
     width: 15px;
     height: 15px;
-    background-image: url('lock.png');
-    background-size: cover;
-    margin-right: 10px;
-}
-
-.user-icon{
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-image: url('user.png');
+    background-image: url('../Pic/lock.png');
     background-size: cover;
     margin-right: 10px;
 }
