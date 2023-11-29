@@ -26,7 +26,7 @@ if (isset($_POST['data'])) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
 	
-	if (guestId == null) {
+	if ($guestId == null) {
 		$stmtG = $conn->prepare("INSERT INTO USER (firstName, lastName)	VALUES(?, ?)");
 		$stmtG->bind_param("ss", $firstName, $lastName);
 		

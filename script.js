@@ -39,14 +39,12 @@ function closeNav() {
 function reservationValidate(){
     const checkInDateStr = document.getElementById("check-in-date").value;
     const checkoutDateStr = document.getElementById("check-out-date").value;
-    const roomNum = document.getElementById("room-num").value;
 
     if(currentDay >= checkInDateStr){
         alert("The closest check-in day is tomorrow.");
     } else if(checkoutDateStr <= checkInDateStr){
         alert("Invalid date range");
     } else {
-        localStorage.setItem('roomNum', roomNum);
         localStorage.setItem('checkIn', checkInDateStr);
         localStorage.setItem('checkOut', checkoutDateStr);
         var checkInDate = new Date(localStorage.getItem('checkIn'));
