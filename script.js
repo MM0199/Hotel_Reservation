@@ -71,18 +71,6 @@ function reservationValidate(){
                 Price = 400.00;
                 break;
     
-            case 'Twin':
-                Price = 150.00;
-                break;
-    
-            case 'King':
-                Price = 250.00;
-                break;
-    
-            case 'Queen':
-                Price = 220.00;
-                break;
-    
             case 'Villa':
                 Price = 550.00;
                 break;
