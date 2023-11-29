@@ -32,7 +32,7 @@ $conn->close();
             <span class="menu" onclick="openNav()">&#9776;</span>
             <label class="hotel-name"><a href="home.html">The Hotel</a></label>
             <div class="get-room">
-              <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+              <a href="roomList.php">GET A ROOM</a>
             </div>
             <!-- Profile Icon and Link to Login Page -->
             <div class="profile-icon">
@@ -91,9 +91,11 @@ $conn->close();
     <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                echo "<script>
+                        localStorage.setItem()
+                    </script>";
                 echo "<a href='reservationDetail.html" . urlencode($row["room_type"]) . "' class='room-card-link'>";
                 echo "<div class='room-card'>";
-                echo "<img class='room-image' src='pictures/" . urlencode($row["room_type"]) . ".jpg' alt='Room Image'>";
                 echo "<div class='room-details'>";
                 echo "<p><strong>Room Number:</strong> " . $row["room_number"] . "</p>";
                 echo "<p><strong>Room Type:</strong> " . $row["room_type"] . "</p>";

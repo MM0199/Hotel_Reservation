@@ -1,21 +1,3 @@
-// Save guest login status
-function saveLoginStatus() {
-    // Check if both username and password fields are not empty
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-  
-    if (username.trim() !== '' && password.trim() !== '') {
-      localStorage.setItem('isLoginStatus', 'true');
-      // Check if the user is logged in and redirect to the appropriate page
-      if (localStorage.getItem('isLoginStatus') === 'true') {
-        window.location.href = 'userAccount.html';
-      } else {
-        window.location.href = 'home.html';
-      }
-    } else {
-      alert('Please fill in both username and password.');
-    }
-  }
 // Check if the user is logged in and adjust the sidebar links
 if (localStorage.getItem("isLoginStatus") === "true") {
     document.getElementById("loginLink").style.display = "none";
