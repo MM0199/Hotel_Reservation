@@ -44,10 +44,23 @@ if ($stmt = $conn->prepare($sql)) {
                     </script>";
             }
 
+            $point = "SELECT loyal_point
+                    FROM CUSTOMER
+                    WHERE customer_id = ?";
+             $stmt_point = $conn->prepare($point);
+             $stmt_point->bind_param("i", $user_id);
+             $stmt_point->execute();
+             $stmt_point->bind_result($loyalty_point);
+             $stmt_point->fetch();
+            
 
             echo    "<script>
                         localStorage.setItem('isLoginStatus', true);
                         localStorage.setItem('guestId', $user_id);
+                        localStorage.setItem('firstName', '$first_name');
+                        localStorage.setItem('lastName', '$last_name');
+                        localStorage.setItem('email', '$email');
+                        localStorage.setItem('point', $loyalty_point);
                         window.location.href = 'home.html';
                     </script>";
 

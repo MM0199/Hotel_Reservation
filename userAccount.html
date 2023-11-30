@@ -62,22 +62,23 @@
     <div class="profile-container">
         <h1>User Profile</h1>
         <div class="profile-field">
-            <label>Username:</label>
-            <span class="profile-info">john_doe</span>
-        </div>
-        <div class="profile-field">
             <label>Name:</label>
-            <span class="profile-info">John Doe</span>
+            <span class="profile-info" id="name"></span>
         </div>
         <div class="profile-field">
             <label>Email:</label>
-            <span class="profile-info">john.doe@example.com</span>
+            <span class="profile-info" id="email"></span>
         </div>
         <div class="profile-field">
-            <label>Account Type:</label>
-            <span class="profile-info">Guest</span>
+            <label>Loyalty points:</label>
+            <span class="profile-info" id="points"></span>
         </div>
     </div>
+    <script>
+        document.getElementById('name').textContent = localStorage.getItem('firstName') + " " + localStorage.getItem('lastName');
+        document.getElementById('email').textContent = localStorage.getItem('email');
+        document.getElementById('points').textContent = localStorage.getItem('point') + " points";
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -11,6 +11,8 @@
         $state = $_POST["state"];
         $city = $_POST["city"];
         $zipcode = $_POST["zipcode"];
+        $today = new DateTime();
+        $birthdayDate = new DateTime($birthDate);
 
         // Combine the address values, checking if $address2 is empty
         $combinedAddress = $address . ' ' . $city . ' ' . $state . ' ' . $zipcode;
@@ -28,8 +30,9 @@
             "password_not_match" => "Repeat password does not match!",
             "username_taken" => "Username is already taken!",
             "email_taken" => "Email address is already registered!",
-            "phone_invalid" => "Invalid phone number.",
+            "phone_invalid" => "Invalid phone number",
             "name_contain_number" => "Name cannot contains number.",
+            "invalid_birth" => "Invalid birthday"
             );
         $error = "";
         if(empty($firstName) OR empty($lastName) OR empty($password) OR empty($repeatPassword) OR empty($email) OR empty($phoneNumber) OR empty($birthDate) 
@@ -50,6 +53,9 @@
         }
         if(strlen($phoneNumber) != 10){
             $error .= $errors["phone_invalid"] . "<br>";
+        }
+        if($birthdayDate >= $today){
+            $error .= $errors["invalid_birth"] . "<br>";
         }
 
         $conn = new mysqli("localhost", "root", "", "hotel_database");
@@ -83,8 +89,9 @@
             $prepareStmtCus = mysqli_stmt_prepare($stmt, $sqlCus);
             // Get the ID of the inserted user
 		    $uid = mysqli_insert_id($conn);
-            if($prepareStmt){
-                mysqli_stmt_bind_param($stmt, "ss", $uid, 0);
+            if($prepareStmtCus){
+                $loyalPoints = '0';
+                mysqli_stmt_bind_param($stmt, "ss", $uid, $loyalPoints);
                 mysqli_stmt_execute($stmt);
                 mysqli_close($conn);
                 echo    "<script>
