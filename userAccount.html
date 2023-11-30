@@ -73,6 +73,7 @@
             <label>Loyalty points:</label>
             <span class="profile-info" id="points"></span>
         </div>
+
     </div>
     <script>
         document.getElementById('name').textContent = localStorage.getItem('firstName') + " " + localStorage.getItem('lastName');
@@ -80,5 +81,7 @@
         document.getElementById('points').textContent = localStorage.getItem('point') + " points";
     </script>
     <script src="script.js"></script>
+    <!-- Calls function to get information from localStorage -->
+    <script> updateUserProfile(); </script>
 </body>
 </html>

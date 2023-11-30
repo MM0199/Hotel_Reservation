@@ -33,7 +33,7 @@
         <span class="menu" onclick="openNav()">&#9776;</span>
         <label class="hotel-name"><a href="home.html">The Hotel</a></label>
         <div class="get-room">
-          <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+          <a href="roomList.php">GET A ROOM</a>
         </div>
         <!-- Profile Icon and Link to Login Page -->
         <div class="profile-pic">
@@ -49,6 +49,7 @@
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
+		<a href="roomManagement.php">Room Management</a>
         <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
       </div>
 
