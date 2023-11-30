@@ -13,24 +13,24 @@
         <span class="menu" onclick="openNav()">&#9776;</span>
         <label class="hotel-name"><a href="home.html">The Hotel</a></label>
         <div class="get-room">
-          <a href="roomList.php">GET A ROOM</a>
+          <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
         </div>
         <!-- Profile Icon and Link to Login Page -->
-        <div class="profile-pic">
-          <a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+        <div class="profile-icon">
+          <a href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
         </div>
       </div>
-      <!-- Side bar -->
-      <div id="mySidenav" class="sidenav">
+
+    <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="home.html">Home</a>
-        <a href="roomList.php">Get a room</a>
+        <a href="roomList.php">Room</a>
+        <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
         <a id="loginLink" href="login.html">Login</a>
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
-        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
-      </div>
+    </div>
     <!-- Registration container -->
     <div class="registration-container">
         <header>Guest Information</header>
@@ -66,19 +66,19 @@
                         <label for="roomID">Room ID<span class="required">*</span></label>
                         <input type="text" id="roomID" name="roomID" placeholder="Enter room ID" required />
                     </div>
-            
+
                     <div class="input-box">
                         <label for="checkInDate">Check-In Date<span class="required">*</span></label>
                         <input type="date" id="checkInDate" name="checkInDate" placeholder="Select check-in date" required />
                     </div>
-            
+
                     <div class="input-box">
                         <label for="checkOutDate">Check-Out Date<span class="required">*</span></label>
                         <input type="date" id="checkOutDate" name="checkOutDate" placeholder="Select check-out date" required />
                     </div>
                 </div>
             </div>
-            
+
             <button type ="reset" id="nextButton">Next</button>
         </form>
     </div>
