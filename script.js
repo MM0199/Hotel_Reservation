@@ -2,6 +2,8 @@
 const profileLink = document.getElementById('profileLink');
 // Check if the user is logged in and adjust the sidebar links
 if (localStorage.getItem("isLoginStatus") === "true") {
+	// After successful login
+	localStorage.setItem('isLoggedIn', 'true');
     document.getElementById("loginLink").style.display = "none";
     document.getElementById("logoutLink").style.display = "block";
     profileLink.href = 'userAccount.html'; // Link to the user account page
@@ -12,6 +14,8 @@ if (localStorage.getItem("isLoginStatus") === "true") {
 // Function to log out
 function logout() {
     localStorage.setItem("isLoginStatus", "false");
+	// After logout or when the session expires
+	localStorage.removeItem('isLoggedIn');
     // Redirect to the login page or any other page as needed
     window.location.href = "home.html";
 }
@@ -119,4 +123,29 @@ function getInfor(room) {
     } else {
         window.location.href = "reservationGuest.html";
     }
-}  
+}
+
+// Function to update user profile information
+function updateUserProfile() {
+    if(localStorage.getItem('isLoginStatus') === 'true') {
+        // Retrieve user information from localStorage
+        const username = localStorage.getItem('username');
+        const name = localStorage.getItem('name');
+        const email = localStorage.getItem('email');
+        let accountType = localStorage.getItem('accountType');
+
+        if (accountType == 'customer') {
+            accountType = 'Customer';
+        } else if (accType == 'employee') {
+            accountType = 'Employee';
+        } else {
+            accountType == 'N/A';
+        }
+
+        // Update HTML content with user information
+        document.getElementById('username').textContent = username || 'N/A';
+        document.getElementById('name').textContent = name || 'N/A';
+        document.getElementById('email').textContent = email || 'N/A';
+        document.getElementById('accountType').textContent = accountType || 'N/A';
+    }
+} 

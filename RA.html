@@ -88,7 +88,7 @@
             }
 
             if (sectionId === 'occupancyRates' || sectionId === 'revenue') {
-                fetch('charts.php')
+                fetch('RA_charts.php')
                 .then(response => response.json())
                 .then(data => {
                     if (sectionId === 'occupancyRates') {
@@ -139,20 +139,10 @@
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
+		<a id = "RA" href = "RA.html">RA</a>
         <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
       </div>
 
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="home.html">Home</a>
-        <a href="roomList.html">Room</a>
-        <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
-        <a id="loginLink" href="login.html">Login</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-        <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
-    </div>
     <script src="script.js"></script>
     <header>
         <h1>SuiteBookers - Reporting and Analytics</h1>

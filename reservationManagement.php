@@ -13,26 +13,26 @@
             <span class="menu" onclick="openNav()">&#9776;</span>
             <label class="hotel-name"><a href="home.html">The Hotel</a></label>
             <div class="get-room">
-              <a href="javascript:void(0)" onclick="getRoom()">GET A ROOM</a>
+              <a href="roomList.php">GET A ROOM</a>
             </div>
             <!-- Profile Icon and Link to Login Page -->
-            <div class="profile-icon">
-              <a href="login.html"><img class="profile-pic" src="profile-pic.png" alt="Profile" /></a>
-            </div>
-          </div>
+            <div class="profile-pic">
+			<a id="profileLink" href=""><img src="profile-pic.png" id="profile-pic" alt="Profile" /></a>
+		</div>
+		</div>
         <!-- Side bar -->
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="home.html">Home</a>
-            <a href="roomList.php">Room</a>
-            <a href="javascript:void(0)" onclick="getRoom()">Get a room</a>
+            <a href="roomList.php">Get a room</a>
             <a id="loginLink" href="login.html">Login</a>
             <a href="#">About</a>
             <a href="#">Services</a>
             <a href="#">Contact</a>
+			<a href="reservationManagement.php">Reservation Management</a>
             <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
         </div>
-        <script src="../JavaScript/script.js"></script>
+        <script src="script.js"></script>
     </body>
     
 <head>
