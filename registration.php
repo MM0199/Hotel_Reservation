@@ -84,7 +84,8 @@
             // Get the ID of the inserted user
 		    $uid = mysqli_insert_id($conn);
             if($prepareStmt){
-                mysqli_stmt_bind_param($stmt, "ss", $uid, 0);
+				$test = 0;
+                mysqli_stmt_bind_param($stmt, "ss", $uid, $test);
                 mysqli_stmt_execute($stmt);
                 mysqli_close($conn);
                 echo    "<script>
