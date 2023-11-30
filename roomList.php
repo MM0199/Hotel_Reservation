@@ -70,6 +70,7 @@ $conn->close();
 
                 // Display room information
                 echo "<div class='room-card' id='$room_number' onclick='getInfor(this)'>";
+                echo "<img class='room-image' src='pictures/" . urlencode($row["room_type"]) . ".jpg' alt='Room Image'>";
                 echo "<div class='room-details'>";
                 echo "<p><strong>Room Number:</strong> " . $room_number . "</p>";
                 echo "<p id='$room_number" . "_type'><strong>Room Type:</strong> " . $room_type . "</p>";
