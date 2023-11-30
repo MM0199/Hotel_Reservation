@@ -54,8 +54,8 @@
 
   <script src="script.js"></script>
   <script>
-    //let isEmployee;
-    //localStorage.setItem('isEmployee', true);
+    let isEmployee;
+    localStorage.setItem('isEmployee', true);
     let permission = localStorage.getItem('isEmployee');
     if(permission == "true") {
       document.getElementById("empOnly").style.visibility = "visible";
