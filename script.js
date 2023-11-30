@@ -124,28 +124,3 @@ function getInfor(room) {
         window.location.href = "reservationGuest.html";
     }
 }
-
-// Function to update user profile information
-function updateUserProfile() {
-    if(localStorage.getItem('isLoginStatus') === 'true') {
-        // Retrieve user information from localStorage
-        const username = localStorage.getItem('username');
-        const name = localStorage.getItem('name');
-        const email = localStorage.getItem('email');
-        let accountType = localStorage.getItem('accountType');
-
-        if (accountType == 'customer') {
-            accountType = 'Customer';
-        } else if (accType == 'employee') {
-            accountType = 'Employee';
-        } else {
-            accountType == 'N/A';
-        }
-
-        // Update HTML content with user information
-        document.getElementById('username').textContent = username || 'N/A';
-        document.getElementById('name').textContent = name || 'N/A';
-        document.getElementById('email').textContent = email || 'N/A';
-        document.getElementById('accountType').textContent = accountType || 'N/A';
-    }
-} 

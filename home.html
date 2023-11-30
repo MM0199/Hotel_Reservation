@@ -49,29 +49,25 @@
 
 	// Function to show/hide links based on login status
 	function toggleLinksVisibility() {
-		var isLoggedInStatus = isLoggedIn();
-
+		var isEmployee = localStorage.getItem('isEmployee');
+    console.log(isEmployee);
 		var raLink = document.getElementById('RA');
 		var empLink = document.getElementById('empOnly');
 		var reservationLink = document.querySelector('a[href="reservationManagement.php"]');
 		var roomLink = document.querySelector('a[href="roomManagement.php"]');
 
-		raLink.style.display = isLoggedInStatus ? 'inline-block' : 'none';
-		empLink.style.display = isLoggedInStatus ? 'inline-block' : 'none';
-		reservationLink.style.display = isLoggedInStatus ? 'inline-block' : 'none';
-		roomLink.style.display = isLoggedInStatus ? 'inline-block' : 'none';
+    if(isEmployee == 'false'){
+      raLink.style.display = 'none';
+    }
+		raLink.style.display = isEmployee ? 'inline-block' : 'none';
+		empLink.style.display = isEmployee ? 'inline-block' : 'none';
+		reservationLink.style.display = isEmployee ? 'inline-block' : 'none';
+		roomLink.style.display = isEmployee ? 'inline-block' : 'none';
+    document.getElementById("empOnly").style.visibility = isEmployee ? "visible" : 'none';
 	}
 
 	// Call the function when the page loads
 	window.onload = toggleLinksVisibility;
 </script>
-    <script>
-      let isEmployee;
-      localStorage.setItem('isEmployee', true);
-      let permission = localStorage.getItem('isEmployee');
-      if(permission == "true") {
-        document.getElementById("empOnly").style.visibility = "visible";
-      }
-    </script>
   </body>
 </html>
