@@ -25,49 +25,12 @@
       <a href="home.html">Home</a>
       <a href="roomList.php">Get a room</a>
       <a id="loginLink" href="login.html">Login</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-	  <a id="RA" href="RA.html">RA</a> <br>
-	  <a id="empOnly" href="employeeManagement.html" style="display: none;">For Employees</a> <br>
-	  <a href="reservationManagement.php" style="display: none;">Reservation Management</a> <br>
-	  <a href="roomManagement.php" style="display: none;">Room	Management</a> <br>
+	    <a id="RA" href="RA.html">RA</a>
+	    <a id="empOnly" href="employeeManagement.html" style="display: none;">For Employees</a>
+	    <a id="reservation" href="reservationManagement.php" style="display: none;">Reservation Management</a>
+	    <a id='RM' href="roomManagement.php" style="display: none;">Room	Management</a>
       <a id="logoutLink" href="javascript:void(0)" style="display: none;" onclick="logout()">Logout</a>
     </div>
     <script src="script.js"></script>
-	<script>
-	// Example function to check if the user is logged in
-	
-	function isLoggedIn() {
-    // Retrieve the user authentication status from local storage
-    var userLoggedIn = localStorage.getItem('isLoggedIn');
-
-    // Check if the 'isLoggedIn' flag exists and its value is 'true'
-    return userLoggedIn === 'true';
-}
-
-
-	// Function to show/hide links based on login status
-	function toggleLinksVisibility() {
-		var isEmployee = localStorage.getItem('isEmployee');
-    console.log(isEmployee);
-		var raLink = document.getElementById('RA');
-		var empLink = document.getElementById('empOnly');
-		var reservationLink = document.querySelector('a[href="reservationManagement.php"]');
-		var roomLink = document.querySelector('a[href="roomManagement.php"]');
-
-    if(isEmployee == 'false'){
-      raLink.style.display = 'none';
-    }
-		raLink.style.display = isEmployee ? 'inline-block' : 'none';
-		empLink.style.display = isEmployee ? 'inline-block' : 'none';
-		reservationLink.style.display = isEmployee ? 'inline-block' : 'none';
-		roomLink.style.display = isEmployee ? 'inline-block' : 'none';
-    document.getElementById("empOnly").style.visibility = isEmployee ? "visible" : 'none';
-	}
-
-	// Call the function when the page loads
-	window.onload = toggleLinksVisibility;
-</script>
   </body>
 </html>

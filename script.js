@@ -3,8 +3,18 @@ const profileLink = document.getElementById('profileLink');
 // Check if the user is logged in and adjust the sidebar links
 if (localStorage.getItem("isLoginStatus") === "true") {
 	// After successful login
-	localStorage.setItem('isLoggedIn', 'true');
     document.getElementById("loginLink").style.display = "none";
+    if(localStorage.getItem("isEmployee") == true){
+        document.getElementById('RA').style.display='block';
+        document.getElementById('reservation').style.display='block';
+        document.getElementById('RM').style.display='block';
+    } else {
+        document.getElementById("logoutLink").style.display = "none";
+        document.getElementById('RA').style.display='none';
+        document.getElementById('reservation').style.display='none';
+        document.getElementById('RM').style.display='none';
+    }
+
     document.getElementById("logoutLink").style.display = "block";
     profileLink.href = 'userAccount.html'; // Link to the user account page
 } else {
